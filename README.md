@@ -2,9 +2,14 @@
 
 This app provides a Pokemon Finder automatically synced with the PokeApi (https://pokeapi.co).
 
+
+## Prerequisites
+
+Python 3.9 must be installed as well as MySQL.
+
 ## Installation
 
-Python 3.9 must be installed in the system. Afterwards, cd into the root project folder and use command:
+CD into the root project folder and use command:
 
     pip install -r requirements.txt
 
@@ -46,3 +51,13 @@ A Dockerization option is offered. Simply run:
 After successful building stage, run the Docker as such:
 
     docker run -p 8000:8000 pokemonFinder
+	
+# Technical information
+
+The PokemonSearch app is leveraged through the following technologies:
+
+* Python 3.9
+* Django Framework
+* Unittest library (Through Django implementation)
+* MySQL Database (Not provided but installed through the appropiate installation process)
+* Docker
