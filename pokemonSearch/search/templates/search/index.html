@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>
+{% load static %}
+
+<!-- Static files serving -->
+<link rel="stylesheet" type="text/css" href="{% static 'search/css/style.css' %}">
+<script src="{% static 'search/js/filter.js' %}"></script>
+
+<title> {{ view_title }} </title>
+<link rel="shortcut icon" type="image/png" href="{% static 'search/img/favicon.png' %}"/>
+
+
+
+<!-- Bootstrap files loading --> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<html>
+
+    
+    <body>
+
+        <div class="container-fluid" style="padding: 150px; padding-top: 75px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h1 style="padding-bottom: 30px;">
+                            <b> Pokemon finder! </b>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>
+                                El que capturó Pokemones recibirá Pokemones.
+                            </h2>
+                            
+                        </div>
+                        <div class="col-md-6" style="display: inline-grid;">
+                            <img src="{% static 'search/img/cavalo.png'%}" class="img-fluid" style="max-width:200px; margin-top:-130px; justify-self: center;"> </img>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 50px;">
+                        <div class="col-md-12">
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Ingrese el nombre a buscar..">
+
+                            <table id="myTable" class="table">
+                            <thead class="thead-dark ">
+                                <tr class="header">
+                                    <th class="text-center" style="width:10%;">Número</th>
+                                    <th class="text-center" style="width: 50%;">Nombre</th>
+                                    <th class="text-center" style="width: 40%;">Imagen</th>
+                                </tr>
+                            </thead>
+                            {% if pokemon_list %}
+                                {% for pokemon in pokemon_list %}
+                                    <tr>
+                                    <td class="text-center"> {{ pokemon.id }}</td>
+                                    <td class="text-center"> <a href="{{ pokemon.id }}"/> {{ pokemon.name }} </a></td>
+                                    {% if pokemon.image.name and pokemon.image.name.strip %}
+                                    {% with "media/images/"|add:pokemon.image.name as im_path%}
+                                    <td class="text-center"> <img src= {{ im_path }} class="img-fluid img-thumbnail" style="max-width: 200px;"> </img> </td>
+                                    {% endwith %}
+                                    {% else %}
+                                    <td class="text-center"> <img src= {% static 'search/img/pokemonDefaultImage.png' %} class="img-fluid img-thumbnail" style="max-width: 200px;"> </img> </td>
+                                    {% endif %}
+                                    </tr>
+                                {% endfor %}
+
+                                {% endif %}
+                            </table> 
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+            </div>
+        </div>
+
+</body>
+</html> 
